@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Majestic Kakes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff8f0; }
+    header { background: #f57c00; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+    header img.logo { height: 50px; margin-right: 1rem; }
+    nav ul { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; align-items: center; }
+    nav ul li a { color: white; text-decoration: none; }
+    .hero { background: url('Cocoa.jpg') center/cover no-repeat; padding: 5rem 2rem; color: white; text-align: center; }
+    .catalogo { padding: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .producto { background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+    .producto img { border: 4px solid #f57c00; border-radius: 8px; }
+    footer { background: #333; color: white; padding: 1rem; text-align: center; }
+    .menu { display: none; flex-direction: column; gap: 0.5rem; background: #f57c00; padding: 1rem; position: absolute; top: 60px; right: 10px; border-radius: 5px; }
+    .menu.show { display: flex; }
+    .contacto input, .contacto textarea { width: 100%; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; }
+    #carrito { position: fixed; bottom: 20px; right: 20px; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); max-width: 300px; display: none; }
+    #carrito ul { list-style: none; padding: 0; margin: 0 0 1rem 0; }
+    #carrito ul li { margin-bottom: 0.5rem; }
+    .carrito-icono { color: white; font-size: 1.5rem; cursor: pointer; position: relative; }
+    .carrito-contador { position: absolute; top: -5px; right: -10px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="logo.png" alt="Logo Majestic Kakes" class="logo">
+      <h1>Majestic Kakes</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#pedido">Pedido</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#redes">Redes</a></li>
+        <li>
+          <span class="carrito-icono" onclick="toggleCarrito()">
+            <i class="fas fa-shopping-basket"></i>
+            <span id="contadorCarrito" class="carrito-contador">0</span>
+          </span>
+        </li>
+      </ul>
+    </nav>
+    <button onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    <div id="menuDesplegable" class="menu">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#pedido">Pedido</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#redes">Redes</a>
+      <a href="#" onclick="toggleCarrito()"><i class="fas fa-shopping-basket"></i> Ver Carrito</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>Tus pasteles favoritos, con el toque perfecto</h2>
+    <p>Encargos personalizados para toda ocasión</p>
+  </section>
+
+  <section id="catalogo" class="catalogo">
+    <div class="producto">
+      <img src="Cubiletes de Naranja.jpg" alt="Cubiletes de Naranja" width="100%">
+      <h3>Cubiletes de Naranja</h3>
+      <p>Q150.00</p>
+      <button onclick="agregarAlCarrito('Cubiletes de Naranja', 150)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="Cuniletes Oreo.jpg" alt="Cubiletes Oreo" width="100%">
+      <h3>Cubiletes Oreo</h3>
+      <p>Q160.00</p>
+      <button onclick="agregarAlCarrito('Cubiletes Oreo', 160)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="Pastel de Coptel.jpg" alt="Pastel de Coptel" width="100%">
+      <h3>Pastel de Coptel</h3>
+      <p>Q160.00</p>
+      <button onclick="agregarAlCarrito('Pastel de Coptel', 160)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="Pastel de Kiwi.jpg" alt="Pastel de Kiwi" width="100%">
+      <h3>Pastel de Kiwi</h3>
+      <p>Q160.00</p>
+      <button onclick="agregarAlCarrito('Pastel de Kiwi', 160)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="Pastel de Frambuesa.jpg" alt="Pastel de Frambuesa" width="100%">
+      <h3>Pastel de Frambuesa</h3>
+      <p>Q160.00</p>
+      <button onclick="agregarAlCarrito('Pastel de Frambuesa', 160)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="Fresa de Corazon.jpg" alt="Pastel de fresa corazon" width="100%">
+      <h3>Pastel de Fresa Corazon</h3>
+      <p>Q160.00</p>
+      <button onclick="agregarAlCarrito('Pastel de Fresa Corazon', 160)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="Pastel de Arandanos.jpg" alt="Pastel de Arandanos" width="100%">
+      <h3>Pastel de Arandanos</h3>
+      <p>Q160.00</p>
+      <button onclick="agregarAlCarrito('Pastel de Arandanos', 160)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="Pastel Oreo con Jalea.jpg" alt="Pastel Oreo con Jalea" width="100%">
+      <h3>Pastel Oreo con Jalea</h3>
+      <p>Q160.00</p>
+      <button onclick="agregarAlCarrito('Pastel Oreo con Jalea', 160)">Agregar al carrito</button>
+    </div>
+    <!-- Más productos -->
+  </section>
+
+  <section id="pedido" class="contacto">
+    <h2>Realiza tu pedido en línea</h2>
+    <form onsubmit="enviarPedido(event)">
+      <input type="text" placeholder="Tu nombre" required>
+      <input type="email" placeholder="Tu correo" required>
+      <textarea placeholder="Especifica tu pedido" required></textarea>
+      <button type="submit">Enviar Pedido</button>
+    </form>
+  </section>
+
+  <section id="contacto" class="contacto">
+    <h2>Contáctanos</h2>
+    <form onsubmit="enviarCorreo(event)">
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Correo electrónico" required>
+      <textarea placeholder="Tu mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <section id="ubicacion">
+    <h2>Ubicación</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1503.1047388935633!2d-89.54159912366939!3d14.972036472442717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f62289a98f9fdab%3A0x9dba582fc261eef!2sUniversidad%20Mariano%20Galvez!5e1!3m2!1ses-419!2sgt!4v1747195131780!5m2!1ses-419!2sgt" width="1400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <section id="redes">
+    <h2>Síguenos</h2>
+    <p>
+      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://wa.me/502xxxxxxx" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </p>
+  </section>
+
+  <div id="carrito">
+    <h3>Carrito</h3>
+    <ul id="listaCarrito"></ul>
+    <strong>Total: Q<span id="totalCarrito">0</span></strong>
+    <br>
+    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Majestic Kakes. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    let carrito = [];
+
+    function toggleMenu() {
+      document.getElementById('menuDesplegable').classList.toggle('show');
+    }
+
+    function agregarAlCarrito(producto, precio) {
+      carrito.push({ nombre: producto, precio });
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById('listaCarrito');
+      const total = document.getElementById('totalCarrito');
+      lista.innerHTML = '';
+      let suma = 0;
+      carrito.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nombre} - Q${item.precio}`;
+        lista.appendChild(li);
+        suma += item.precio;
+      });
+      total.textContent = suma;
+      document.getElementById('carrito').style.display = 'block';
+    }
+
+    function vaciarCarrito() {
+      carrito = [];
+      actualizarCarrito();
+      document.getElementById('carrito').style.display = 'none';
+    }
+
+    function enviarPedido(event) {
+      event.preventDefault();
+      if (carrito.length === 0) {
+        alert("Por favor agrega productos al carrito antes de enviar el pedido.");
+        return;
+      }
+      alert("¡Tu pedido fue enviado! Nos pondremos en contacto pronto.");
+      vaciarCarrito();
+    }
+
+    function enviarCorreo(event) {
+      event.preventDefault();
+      alert("¡Gracias por contactarnos! Te responderemos pronto.");
+    }
+  </script>
+</body>
+</html>
